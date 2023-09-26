@@ -9,7 +9,7 @@
 
     <item
         android:id="@+id/shorts"
-        android:title="Shorts"
+        android:title="Barberias"
         android:icon="@drawable/baseline_whatshot_24"
         />
 
@@ -18,11 +18,11 @@
 
     <item
         android:id="@+id/subscriptions"
-        android:title="Subscriptions"
+        android:title="Servicios"
         android:icon="@drawable/baseline_subscriptions_24" />
     <item
         android:id="@+id/library"
-        android:title="Library"
+        android:title="Perfil"
         android:icon="@drawable/baseline_video_library_24" />
 
 </menu>
