@@ -38,7 +38,7 @@ open class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        supportActionBar?.hide()
+//        supportActionBar?.hide()
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         fab = findViewById(R.id.fab);
@@ -135,11 +135,11 @@ open class Home : AppCompatActivity() {
                 dialog.dismiss()
             }
         })
-        dialog.show()
-        dialog.getWindow()?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.getWindow()?.getAttributes()?.windowAnimations = R.style.DialogAnimation
-        dialog.getWindow()?.setGravity(Gravity.BOTTOM)
+//        dialog.show()
+//        dialog.getWindow()?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+//        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//        dialog.getWindow()?.getAttributes()?.windowAnimations = R.style.DialogAnimation
+//        dialog.getWindow()?.setGravity(Gravity.BOTTOM)
     }
 
 //    override fun onNavigationItemSelected(item: MenuItem): Boolean {
