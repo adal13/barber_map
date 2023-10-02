@@ -8,7 +8,7 @@
         android:icon="@drawable/baseline_home_24"/>
 
     <item
-        android:id="@+id/shorts"
+        android:id="@+id/barberia"
         android:title="Barberias"
         android:icon="@drawable/baseline_whatshot_24"
         />
@@ -17,11 +17,11 @@
         android:title=""/>
 
     <item
-        android:id="@+id/subscriptions"
+        android:id="@+id/servicio"
         android:title="Servicios"
         android:icon="@drawable/baseline_subscriptions_24" />
     <item
-        android:id="@+id/library"
+        android:id="@+id/perfil"
         android:title="Perfil"
         android:icon="@drawable/baseline_video_library_24" />
 

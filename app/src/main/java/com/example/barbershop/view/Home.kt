@@ -1,23 +1,17 @@
 package com.example.barbershop.view
 
 import android.app.Dialog
-import android.content.ClipData.Item
 import android.content.Intent
-import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -35,6 +29,7 @@ open class Home : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout;
     private lateinit var bottomNavigationView: BottomNavigationView;
     private lateinit var toggle: ActionBarDrawerToggle;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -52,27 +47,26 @@ open class Home : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-//        if(savedInstanceState == null){
-//            supportFragmentManager.beginTransaction().replace(R.id.frame_layout, HomeFragment()).commit();
-//            navigationView.setCheckedItem(R.id.nav_home);
-//        }
+        // Configurar el Listener de selección de elementos en el NavigationView
         navigationView.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_home -> Toast.makeText(applicationContext, "Clicked home", Toast.LENGTH_SHORT).show()
-                R.id.nav_settings -> Toast.makeText(applicationContext, "Clicked settings", Toast.LENGTH_SHORT).show()
-                R.id.nav_share -> Toast.makeText(applicationContext, "Clicked share", Toast.LENGTH_SHORT).show()
-                R.id.nav_about -> Toast.makeText(applicationContext, "Clicked about", Toast.LENGTH_SHORT).show()
-//                {
-//                    Log.d("Navigation", "Elemento de menú 'Home' seleccionado")
-//                    val intent = Intent(applicationContext, MainActivity::class.java)
-//                    startActivity(intent)
-//                    true
-//                }
-//                else -> false
+                when (it.itemId) {
+                R.id.nav_home -> {
+                    
+                    // Redireccionar a la ventana deseada (por ejemplo, MainActivity)
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    true // Devolver true para indicar que el evento se ha manejado
+                }
+                // Agregar más opciones y redirecciones según sea necesario
+                else -> false // Devolver false si el evento no se ha manejado
             }
-            true
         }
 
+
+        if(savedInstanceState == null){
+            supportFragmentManager.beginTransaction().replace(R.id.frame_layout, HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
 
         replaceFragment(HomeFragment())
 
@@ -80,9 +74,9 @@ open class Home : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.getItemId()) {
                 R.id.home -> replaceFragment(HomeFragment())
-                R.id.shorts -> replaceFragment(ShortsFragment())
-                R.id.subscriptions -> replaceFragment(SubscriptionsFragment())
-                R.id.library -> replaceFragment(LibraryFragment())
+                R.id.barberia -> replaceFragment(BarberiaFragment())
+                R.id.servicio -> replaceFragment(ServicioFragment())
+                R.id.perfil -> replaceFragment(PerfilFragment())
             }
             true
         }
@@ -135,11 +129,11 @@ open class Home : AppCompatActivity() {
                 dialog.dismiss()
             }
         })
-//        dialog.show()
-//        dialog.getWindow()?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-//        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//        dialog.getWindow()?.getAttributes()?.windowAnimations = R.style.DialogAnimation
-//        dialog.getWindow()?.setGravity(Gravity.BOTTOM)
+        dialog.show()
+        dialog.getWindow()?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.getWindow()?.getAttributes()?.windowAnimations = R.style.DialogAnimation
+        dialog.getWindow()?.setGravity(Gravity.BOTTOM)
     }
 
 //    override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -160,11 +154,11 @@ open class Home : AppCompatActivity() {
 //        toggle.onConfigurationChanged(newConfig)
 //    }
 //
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(toggle.onOptionsItemSelected(item)){
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if(toggle.onOptionsItemSelected(item)){
+//            return true
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 
 }
