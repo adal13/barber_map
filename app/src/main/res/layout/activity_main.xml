@@ -53,4 +53,13 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/jwtApi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hola Mundo"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="74dp"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
