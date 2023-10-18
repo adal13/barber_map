@@ -1,6 +1,7 @@
 package com.example.barbershop.Api.services
 
 import com.example.barbershop.Api.entity.Locals
+import com.example.barbershop.Api.entity.ObjectLocals
 import com.example.barbershop.Api.entity.User
 import retrofit2.Call
 import retrofit2.http.GET

@@ -1,4 +1,4 @@
-package com.example.barbershop.view
+package com.example.barbershop.ui.view
 
 import android.app.Dialog
 import android.content.Intent
@@ -16,8 +16,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.barbershop.*
+import com.example.barbershop.MainActivity
 import com.example.barbershop.R
+import com.example.barbershop.ui.fragment.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView

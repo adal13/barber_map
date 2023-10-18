@@ -8,15 +8,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.barbershop.Api.client.ApiClient
 import com.example.barbershop.Api.entity.User
-import com.example.barbershop.Api.services.ApiServices
 import com.example.barbershop.databinding.ActivityMainBinding
-import com.example.barbershop.view.Home
-import com.google.android.material.textfield.TextInputLayout
-import com.google.gson.Gson
+import com.example.barbershop.ui.view.Home
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import org.mindrot.jbcrypt.BCrypt
 
 class MainActivity : AppCompatActivity() {
 
@@ -59,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 */
+
         val retrofitTraer = ApiClient.consumirApi.getIdUser()
         retrofitTraer.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
@@ -87,11 +84,9 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity,"Error de conexión a la API",Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<User>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "Error al consultar", Toast.LENGTH_SHORT).show()
             }
-
         })
 
 /*        btn_login.setOnClickListener {
@@ -119,6 +114,5 @@ class MainActivity : AppCompatActivity() {
     private fun isValid(username: String, password: String): Boolean {
         return true
     }*/
-
     }
 }
