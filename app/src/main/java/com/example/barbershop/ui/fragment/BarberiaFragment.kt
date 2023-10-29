@@ -5,14 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.barbershop.Api.client.ApiClient
-import com.example.barbershop.Api.entity.Locals
+import com.example.barbershop.ui.Api.client.ApiClient
+import com.example.barbershop.ui.Api.entity.Locals
 import com.example.barbershop.R
 import com.example.barbershop.ui.adapter.LocalAdapter
 import retrofit2.Call
