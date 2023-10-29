@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/service_card_views"
+    android:layout_margin="9dp"
+    card_view:cardBackgroundColor="@color/lavender"
+    card_view:cardCornerRadius="20dp"
+    card_view:cardElevation="6dp"
+    card_view:contentPadding="4dp">
+    <!--
+        android:background="@color/cardview_shadow_end_color"
+    -->
+
+
+    <RelativeLayout
+        android:id="@+id/id_service_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/service_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="TODO" />
+
+        <TextView
+            android:id="@+id/service_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/service_image"
+            android:layout_toRightOf="@+id/service_image"
+            android:text="Nombre"
+            android:textColor="@color/WhiteOrBlack"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/service_precio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/service_nombre"
+            android:layout_toEndOf="@+id/service_image"
+            android:layout_toRightOf="@+id/service_image"
+            android:text="Precio:"
+            android:textColor="@color/WhiteOrBlack"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/service_duracion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/service_precio"
+            android:layout_toEndOf="@+id/service_image"
+            android:layout_toRightOf="@+id/service_image"
+            android:text="Duracion:"
+            android:textColor="@color/WhiteOrBlack"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/service_created_at"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/service_duracion"
+            android:layout_toEndOf="@+id/service_image"
+            android:layout_toRightOf="@+id/service_image"
+            android:text="Created_At:"
+            android:textColor="@color/WhiteOrBlack"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/service_update_at"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/service_created_at"
+            android:layout_toEndOf="@+id/service_image"
+            android:layout_toRightOf="@+id/service_image"
+            android:text="Updated_At:"
+            android:textColor="@color/WhiteOrBlack"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+
