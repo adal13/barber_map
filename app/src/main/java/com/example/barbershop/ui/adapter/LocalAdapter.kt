@@ -3,12 +3,12 @@ package com.example.barbershop.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.barbershop.Api.entity.ObjectLocals
+import com.example.barbershop.ui.Api.entity.ObjectServices
 import com.example.barbershop.R
+import com.example.barbershop.ui.Api.entity.ObjectLocals
 
 class LocalAdapter(private val data: List<ObjectLocals>) : RecyclerView.Adapter<LocalAdapter.ViewHolder>() {
 
