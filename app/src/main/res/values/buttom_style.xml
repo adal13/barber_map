@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <item name="dos" type="drawable">
+        <shape android:shape="rectangle">
+            <solid android:color="#2196F3" /> <!-- Color de fondo del botón -->
+            <corners android:radius="8dp" /> <!-- Radio de las esquinas -->
+        </shape>
+    </item>
+    <item name="uno"
+        android:right="2dp" android:left="2dp" android:bottom="4dp" type="drawable">
+        <shape android:shape="rectangle">
+            <solid android:color="#66000000" /> <!-- Color de la sombra -->
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="buttom_rounded">
+        <item name="android:background">@drawable/button_rounded</item> <!-- Fondo personalizado -->
+        <item name="android:textColor">@color/black</item> <!-- Color de texto personalizado -->
+        <!-- Otros atributos de estilo específicos, si los necesitas -->
+    </style>
+</resources>

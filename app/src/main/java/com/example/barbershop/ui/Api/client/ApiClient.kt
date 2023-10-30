@@ -1,6 +1,6 @@
-package com.example.barbershop.Api.client
+package com.example.barbershop.ui.Api.client
 
-import com.example.barbershop.Api.services.ApiServices
+import com.example.barbershop.ui.Api.services.ApiServices
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

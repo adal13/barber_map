@@ -1,4 +1,4 @@
-package com.example.barbershop.Api.entity
+package com.example.barbershop.ui.Api.entity
 
 data class User(
     val mensaje: String,
