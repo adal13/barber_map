@@ -1,6 +1,8 @@
 package com.example.barbershop.ui.view
 
+import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -17,9 +19,13 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.barbershop.MainActivity
 import com.example.barbershop.R
 import com.example.barbershop.databinding.ActivityHomeBinding
-import com.example.barbershop.ui.fragment.*
+import com.example.barbershop.ui.fragment.bottomnavigation.BottomBarberiaFragment
+import com.example.barbershop.ui.fragment.bottomnavigation.BottomHomeFragment
+import com.example.barbershop.ui.fragment.bottomnavigation.BottomPerfilFragment
+import com.example.barbershop.ui.fragment.bottomnavigation.BottomServicioFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -60,10 +66,10 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 //        binding.bottomNavigationView.setBackground(null)
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.getItemId()) {
-                R.id.home -> replaceFragment(HomeFragment())
-                R.id.barberia -> replaceFragment(BarberiaFragment())
-                R.id.servicio -> replaceFragment(ServicioFragment())
-                R.id.perfil -> replaceFragment(PerfilFragment())
+                R.id.home -> replaceFragment(BottomHomeFragment())
+                R.id.barberia -> replaceFragment(BottomBarberiaFragment())
+                R.id.servicio -> replaceFragment(BottomServicioFragment())
+                R.id.perfil -> replaceFragment(BottomPerfilFragment())
             }
             true
         }
@@ -78,7 +84,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
         if(savedInstanceState == null){
             supportFragmentManager.beginTransaction()
-                .replace(R.id.frame_layout, HomeFragment()).commit()
+                .replace(R.id.frame_layout, BottomHomeFragment()).commit()
             navigationView.setCheckedItem(R.id.nav_home)
         }
     }
@@ -133,23 +139,40 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_home -> {
-                replaceFragment(HomeFragment())
+                replaceFragment(BottomHomeFragment())
             }
-            R.id.nav_settings -> {
-                replaceFragment(BarberiaFragment())
+            R.id.nav_agenda -> {
+                replaceFragment(BottomBarberiaFragment())
             }
-//            R.id.nav_home -> Toast.makeText(this@Home, "Item 1", Toast.LENGTH_SHORT).show()
+            R.id.nav_notificacion -> {
+                val intent = Intent(this@Home, Barber::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_contacto -> {
+
+            }
+            R.id.nav_about -> {
+
+            }
+            R.id.nav_logout -> {
+                if(!isFinishing){
+                    messageLogout()
+                }
+            }
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         if(binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         }else{
-            super.onBackPressedDispatcher.onBackPressed()
+            if(!isFinishing){
+                messageLogout()
+            }else{
+                super.onBackPressed()
+            }
         }
     }
 
@@ -168,6 +191,29 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun logout(){
+        val intent = Intent(this@Home, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
+    }
+
+    fun messageLogout(){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+        builder.setCancelable(false)
+
+        builder.setPositiveButton("Sí") { _, _ ->
+            logout()
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.cancel()
+        }
+
+        val dialog = builder.create()
+        dialog.show()
     }
 
 }

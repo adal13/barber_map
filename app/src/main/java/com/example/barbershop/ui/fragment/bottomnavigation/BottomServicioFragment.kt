@@ -1,4 +1,4 @@
-package com.example.barbershop.ui.fragment
+package com.example.barbershop.ui.fragment.bottomnavigation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.barbershop.ui.Api.client.ApiClient
 import com.example.barbershop.ui.Api.entity.Services
 import com.example.barbershop.R
-import com.example.barbershop.ui.adapter.LocalAdapter
 import com.example.barbershop.ui.adapter.ServiceAdapter
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,10 +23,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ServicioFragment.newInstance] factory method to
+ * Use the [BottomServicioFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ServicioFragment : Fragment() {
+class BottomServicioFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -86,7 +85,7 @@ class ServicioFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ServicioFragment().apply {
+            BottomServicioFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

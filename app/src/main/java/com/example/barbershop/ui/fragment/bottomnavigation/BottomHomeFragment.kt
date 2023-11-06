@@ -1,4 +1,4 @@
-package com.example.barbershop.ui.fragment
+package com.example.barbershop.ui.fragment.bottomnavigation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,7 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeFragment : Fragment() {
+class BottomHomeFragment : Fragment() {
 
 
     override fun onCreateView(

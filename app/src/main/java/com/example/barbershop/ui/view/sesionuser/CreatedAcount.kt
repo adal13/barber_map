@@ -1,4 +1,4 @@
-package com.example.barbershop.ui.view
+package com.example.barbershop.ui.view.sesionuser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
