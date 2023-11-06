@@ -1,0 +1,24 @@
+//apply plugin: 'com.android.application'
+
+android {
+    buildTypes {
+        release {
+            // Personaliza las configuraciones de la versión de liberación si es necesario.
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+task generateReleaseEnvironment {
+    doLast {
+        println "Generando entorno de liberación..."
+
+        // Puedes agregar comandos adicionales aquí para configurar tu entorno de liberación, como copiar archivos, establecer variables de entorno, etc.
+
+        println "Entorno de liberación generado con éxito."
+    }
+}
+
+// Ejecuta el script de generación del entorno de liberación antes de la compilación.
+preBuild.dependsOn generateReleaseEnvironment

@@ -23,8 +23,8 @@ object ApiClient {
 //        return apiService;
 //    }
 
-
     val URL_BASE = "http://10.0.2.2:8093/"
+//    val URL_BASE = "https://8869-148-244-93-42.ngrok-free.app/"
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(URL_BASE)

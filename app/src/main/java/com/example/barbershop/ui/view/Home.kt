@@ -1,7 +1,7 @@
 package com.example.barbershop.ui.view
 
 import android.app.Dialog
-import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -12,67 +12,53 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.barbershop.MainActivity
 import com.example.barbershop.R
+import com.example.barbershop.databinding.ActivityHomeBinding
 import com.example.barbershop.ui.fragment.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 
-
-open class Home : AppCompatActivity() {
-//    , NavigationView.OnNavigationItemSelectedListener
+class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
     private lateinit var fab: FloatingActionButton;
     private lateinit var drawerLayout: DrawerLayout;
     private lateinit var bottomNavigationView: BottomNavigationView;
     private lateinit var toggle: ActionBarDrawerToggle;
+    private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-//        supportActionBar?.hide()
+//        setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         fab = findViewById(R.id.fab);
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        val navigationView : NavigationView = findViewById(R.id.nav_view);
         val toolbar: Toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
-        setSupportActionBar(toolbar);
+        val navigationView : NavigationView = findViewById(R.id.nav_view);
+
+        setSupportActionBar(binding.toolbar)
+
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-        // Configurar el Listener de selección de elementos en el NavigationView
-        navigationView.setNavigationItemSelectedListener {
-                when (it.itemId) {
-                R.id.nav_home -> {
-                    
-                    // Redireccionar a la ventana deseada (por ejemplo, MainActivity)
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    true // Devolver true para indicar que el evento se ha manejado
-                }
-                // Agregar más opciones y redirecciones según sea necesario
-                else -> false // Devolver false si el evento no se ha manejado
-            }
+        /*when (it.itemId) {
+            R.id.nav_home -> Toast.makeText(this@Home, "Item 1", Toast.LENGTH_SHORT).show();
         }
+        true*/
 
-
-        if(savedInstanceState == null){
-            supportFragmentManager.beginTransaction().replace(R.id.frame_layout, HomeFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_home);
-        }
-
-        replaceFragment(HomeFragment())
-
-        bottomNavigationView.setBackground(null)
-        bottomNavigationView.setOnItemSelectedListener { item ->
+        binding.bottomNavigationView.background = null
+//        binding.bottomNavigationView.setBackground(null)
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.getItemId()) {
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.barberia -> replaceFragment(BarberiaFragment())
@@ -87,9 +73,16 @@ open class Home : AppCompatActivity() {
                 showBottomDialog()
             }
         })
+
+        navigationView.setNavigationItemSelectedListener(this)
+
+        if(savedInstanceState == null){
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, HomeFragment()).commit()
+            navigationView.setCheckedItem(R.id.nav_home)
+        }
     }
 
-    // Outside onCreate
     open fun replaceFragment(fragment: Fragment) {
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
@@ -137,29 +130,44 @@ open class Home : AppCompatActivity() {
         dialog.getWindow()?.setGravity(Gravity.BOTTOM)
     }
 
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//        when(item.itemId){
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.nav_home -> {
+                replaceFragment(HomeFragment())
+            }
+            R.id.nav_settings -> {
+                replaceFragment(BarberiaFragment())
+            }
 //            R.id.nav_home -> Toast.makeText(this@Home, "Item 1", Toast.LENGTH_SHORT).show()
-//        }
-//        drawerLayout.closeDrawer(GravityCompat.START)
-//        return true
-//    }
-//
-//    override fun onPostCreate(savedInstanceState: Bundle?){
-//        super.onPostCreate(savedInstanceState)
-//        toggle.syncState()
-//    }
-//
-//    override fun onConfigurationChanged(newConfig: Configuration) {
-//        super.onConfigurationChanged(newConfig)
-//        toggle.onConfigurationChanged(newConfig)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if(toggle.onOptionsItemSelected(item)){
-//            return true
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
+        }
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if(binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        }else{
+            super.onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?){
+        super.onPostCreate(savedInstanceState)
+        toggle.syncState()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        toggle.onConfigurationChanged(newConfig)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item)){
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }
