@@ -22,7 +22,7 @@
         android:padding="16dp">
 
         <ImageView
-            android:id="@+id/image"
+            android:id="@+id/logo_local"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignParentStart="true"
@@ -35,21 +35,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/image"
-            android:layout_toRightOf="@+id/image"
+            android:layout_toEndOf="@+id/logo_local"
+            android:layout_toRightOf="@+id/logo_local"
             android:text="Nombre"
             android:textColor="@color/WhiteOrBlack"
             android:textSize="30sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/direccion"
+            android:id="@+id/estado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/nombre"
-            android:layout_toEndOf="@+id/image"
-            android:layout_toRightOf="@+id/image"
-            android:text="Direccion:"
+            android:layout_toEndOf="@+id/logo_local"
+            android:layout_toRightOf="@+id/logo_local"
+            android:text="Estado:"
+            android:textColor="@color/WhiteOrBlack"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/municipio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/estado"
+            android:layout_toEndOf="@+id/logo_local"
+            android:layout_toRightOf="@+id/logo_local"
+            android:text="Municipio:"
+            android:textColor="@color/WhiteOrBlack"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/calle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/municipio"
+            android:layout_toEndOf="@+id/logo_local"
+            android:layout_toRightOf="@+id/logo_local"
+            android:text="Calle:"
             android:textColor="@color/WhiteOrBlack"
             android:textStyle="bold" />
 
@@ -57,32 +79,10 @@
             android:id="@+id/ubicacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/direccion"
-            android:layout_toEndOf="@+id/image"
-            android:layout_toRightOf="@+id/image"
+            android:layout_below="@id/calle"
+            android:layout_toEndOf="@+id/logo_local"
+            android:layout_toRightOf="@+id/logo_local"
             android:text="Ubicacion:"
-            android:textColor="@color/WhiteOrBlack"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/created_at"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ubicacion"
-            android:layout_toEndOf="@+id/image"
-            android:layout_toRightOf="@+id/image"
-            android:text="Created_At:"
-            android:textColor="@color/WhiteOrBlack"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/update_at"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/created_at"
-            android:layout_toEndOf="@+id/image"
-            android:layout_toRightOf="@+id/image"
-            android:text="Updated_At:"
             android:textColor="@color/WhiteOrBlack"
             android:textStyle="bold" />
     </RelativeLayout>

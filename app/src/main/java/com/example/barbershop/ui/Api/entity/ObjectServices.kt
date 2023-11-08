@@ -12,6 +12,9 @@ data class ObjectServices(
     @SerializedName("idServices")
     val idServices: Int,
 
+    @SerializedName("imagen")
+    val imagen: String,
+
     @SerializedName("locals_id")
     val locals_id: ObjectLocals,
 

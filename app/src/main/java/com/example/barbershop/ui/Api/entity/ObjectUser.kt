@@ -6,6 +6,9 @@ data class ObjectUser(
     @SerializedName("apellido")
     val apellido: String,
 
+    @SerializedName("avatar")
+    val avatar: String,
+
     @SerializedName("contrasena")
     val contrasena: String,
 

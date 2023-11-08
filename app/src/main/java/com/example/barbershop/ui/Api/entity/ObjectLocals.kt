@@ -5,8 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class ObjectLocals(
     @SerializedName("created_at")
     val created_at: String,
-    @SerializedName("direccion")
-    val direccion: String,
     @SerializedName("idLocal")
     val idLocal: Int,
     @SerializedName("logo")
@@ -15,6 +13,12 @@ data class ObjectLocals(
     val nombre: String,
     @SerializedName("ubicacion")
     val ubicacion: String,
+    @SerializedName("estado")
+    val estado: String,
+    @SerializedName("municipio")
+    val municipio: String,
+    @SerializedName("calle")
+    val calle: String,
     @SerializedName("updated_at")
     val updated_at: String
 )
