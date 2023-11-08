@@ -21,6 +21,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.reflect.Field
+import android.content.Context
+import android.content.SharedPreferences
 
 class MainActivity : AppCompatActivity() {
 
@@ -55,7 +57,15 @@ class MainActivity : AppCompatActivity() {
                                 //if (users.nombreUsuario == username && BCrypt.checkpw(password, users.contrasena)) {
                                 //if (users.nombreUsuario == username && users.contrasena == password) {
                                     isPasswordCorrect = true
+
                                     val intent = Intent(this@MainActivity, Home::class.java)
+                                    val userId = users.idUser
+                                    val sharedPref: SharedPreferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+                                    val editor: SharedPreferences.Editor = sharedPref.edit()
+
+                                    editor.putString("user_id", userId.toString())
+                                    editor.apply()
+
                                     startActivity(intent)
                                     Toast.makeText(this@MainActivity, "Bienvenido a su cuenta ${users.nombre}", Toast.LENGTH_SHORT).show()
                                     break

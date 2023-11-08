@@ -6,6 +6,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_views"
     android:layout_margin="9dp"
+    android:background="@drawable/button_rounded"
     card_view:cardBackgroundColor="@color/lavender"
     card_view:cardCornerRadius="20dp"
     card_view:cardElevation="6dp"

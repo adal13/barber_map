@@ -2,14 +2,18 @@ package com.example.barbershop.ui.view
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +26,8 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.barbershop.MainActivity
 import com.example.barbershop.R
 import com.example.barbershop.databinding.ActivityHomeBinding
+import com.example.barbershop.ui.Api.client.ApiClient
+import com.example.barbershop.ui.Api.entity.User
 import com.example.barbershop.ui.fragment.bottomnavigation.BottomBarberiaFragment
 import com.example.barbershop.ui.fragment.bottomnavigation.BottomHomeFragment
 import com.example.barbershop.ui.fragment.bottomnavigation.BottomPerfilFragment
@@ -29,6 +35,9 @@ import com.example.barbershop.ui.fragment.bottomnavigation.BottomServicioFragmen
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
     private lateinit var fab: FloatingActionButton;
@@ -47,9 +56,9 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         fab = findViewById(R.id.fab);
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        dateUser()
 
+        val toolbar: Toolbar = findViewById(R.id.toolbar);
         val navigationView : NavigationView = findViewById(R.id.nav_view);
 
         setSupportActionBar(binding.toolbar)
@@ -57,13 +66,8 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        /*when (it.itemId) {
-            R.id.nav_home -> Toast.makeText(this@Home, "Item 1", Toast.LENGTH_SHORT).show();
-        }
-        true*/
 
         binding.bottomNavigationView.background = null
-//        binding.bottomNavigationView.setBackground(null)
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.getItemId()) {
                 R.id.home -> replaceFragment(BottomHomeFragment())
@@ -87,6 +91,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                 .replace(R.id.frame_layout, BottomHomeFragment()).commit()
             navigationView.setCheckedItem(R.id.nav_home)
         }
+
     }
 
     open fun replaceFragment(fragment: Fragment) {
@@ -214,6 +219,39 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
         val dialog = builder.create()
         dialog.show()
+    }
+
+    fun dateUser() {
+        // Obtén el ID de usuario almacenado en las preferencias compartidas
+        val sharedPref: SharedPreferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+        val userId = sharedPref.getString("user_id", "")
+
+        val retrofitTraer = ApiClient.consumirApi.getUserId(userId)
+
+        retrofitTraer.enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+                    val objectsUser = response.body()?.`object`?.get(0)
+                    if (objectsUser != null) {
+                        // Accede a los campos del objeto
+                        val correo = objectsUser.correo
+                        val nombre = objectsUser.nombre
+
+                        // Actualiza tus vistas con los datos
+                        runOnUiThread {
+                            val name_user = findViewById<TextView>(R.id.name_users)
+                            val email_user = findViewById<TextView>(R.id.email_users)
+                            name_user.text = nombre
+                            email_user.text = correo
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                // Maneja errores
+            }
+        })
     }
 
 }
