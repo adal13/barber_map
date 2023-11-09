@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
+import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
@@ -253,5 +254,31 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             }
         })
     }
+
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        val navigationView = findViewById<NavigationView>(R.id.nav_view) // Reemplaza con el ID de tu NavigationView
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout) // Reemplaza con el ID de tu DrawerLayout
+
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            val x = event.x
+            val y = event.y
+
+            // Obtiene las coordenadas del área de la barra de navegación
+            val navigationViewRect = Rect()
+            navigationView.getGlobalVisibleRect(navigationViewRect)
+
+            // Verifica si el toque está fuera del área de la barra de navegación
+            if (!navigationViewRect.contains(x.toInt(), y.toInt())) {
+                // Cierra la barra de navegación
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    return true
+                }
+            }
+        }
+
+        return super.dispatchTouchEvent(event)
+    }
+
 
 }
