@@ -47,7 +47,7 @@ class ExampleInstrumentedTest {
     @Test
     fun testLoginAndNavigation() {
         // Simula la entrada de un nombre de usuario y una contraseña
-        onView(withId(R.id.tx_username)).perform(typeText("admin"), closeSoftKeyboard())
+        onView(withId(R.id.tx_username)).perform(typeText("123eeee"), closeSoftKeyboard())
         onView(withId(R.id.tx_password)).perform(typeText("admin"), closeSoftKeyboard())
 
         // Realiza clic en el botón de inicio de sesión
@@ -81,7 +81,7 @@ class ExampleInstrumentedTest {
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
 
         // Simula la entrada de un nombre de usuario y una contraseña
-        onView(withId(R.id.tx_username)).perform(typeText("admin"), closeSoftKeyboard())
+        onView(withId(R.id.tx_username)).perform(typeText("123eeee"), closeSoftKeyboard())
         onView(withId(R.id.tx_password)).perform(typeText("admin"), closeSoftKeyboard())
 
         // Realiza clic en el botón de inicio de sesión
