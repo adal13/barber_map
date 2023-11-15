@@ -1,15 +1,12 @@
 package com.example.barbershop
 
 import android.content.Intent
-import android.graphics.PorterDuff
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.example.barbershop.ui.Api.client.ApiClient
 import com.example.barbershop.ui.Api.entity.User
 import com.example.barbershop.databinding.ActivityMainBinding
@@ -20,9 +17,9 @@ import com.example.barbershop.ui.files.changeCursorColor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.reflect.Field
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.barbershop.ui.view.sesionuser.CreatedAcount
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         val tx_username = findViewById<EditText>(R.id.tx_username)
         val tx_password = findViewById<EditText>(R.id.tx_password)
         val btn_login = findViewById<Button>(R.id.btn_login)
+        val createAccount = findViewById<TextView>(R.id.createAccount)
 
         changeCursorColor(tx_username, this)
         changeCursorColor(tx_password, this)
@@ -84,5 +82,12 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Error al consultar", Toast.LENGTH_SHORT).show()
             }
         })
+
+
+        createAccount.setOnClickListener{
+            val intent = Intent(this@MainActivity, CreatedAcount::class.java)
+            startActivity(intent)
+        }
+
     }
 }
