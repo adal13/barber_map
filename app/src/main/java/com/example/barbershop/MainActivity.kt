@@ -19,6 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.barbershop.ui.view.sesionuser.CreatedAcount
 
 class MainActivity : AppCompatActivity() {
@@ -26,10 +27,16 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val screenSplash = installSplashScreen()
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+
+        Thread.sleep(1000)
+        screenSplash.setKeepOnScreenCondition{ false }
 
         val tx_username = findViewById<EditText>(R.id.tx_username)
         val tx_password = findViewById<EditText>(R.id.tx_password)
@@ -58,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
                                     val intent = Intent(this@MainActivity, Home::class.java)
                                     val userId = users.idUser
-                                    val sharedPref: SharedPreferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+                                    val sharedPref: SharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE)
                                     val editor: SharedPreferences.Editor = sharedPref.edit()
 
                                     editor.putString("user_id", userId.toString())
