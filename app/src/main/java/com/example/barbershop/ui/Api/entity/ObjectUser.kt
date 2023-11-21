@@ -7,7 +7,7 @@ data class ObjectUser(
     val apellido: String,
 
     @SerializedName("avatar")
-    val avatar: String,
+    val avatar: String?,
 
     @SerializedName("contrasena")
     val contrasena: String,
@@ -16,10 +16,10 @@ data class ObjectUser(
     val correo: String,
 
     @SerializedName("createdAt")
-    val createdAt: String,
+    val createdAt: String?,
 
     @SerializedName("emailVerified")
-    val emailVerified: Any,
+    val emailVerified: String?,
 
     @SerializedName("idUser")
     val idUser: Int,
@@ -31,11 +31,11 @@ data class ObjectUser(
     val nombreUsuario: String,
 
     @SerializedName("rememberToken")
-    val rememberToken: Any,
+    val rememberToken: String?,
 
     @SerializedName("telefono")
     val telefono: String,
 
     @SerializedName("updatedAt")
-    val updatedAt: String
+    val updatedAt: String?
 )

@@ -19,7 +19,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.barbershop.ui.Api.entity.ObjectUser
 import com.example.barbershop.ui.view.sesionuser.CreatedAcount
 
 class MainActivity : AppCompatActivity() {
@@ -55,6 +57,59 @@ class MainActivity : AppCompatActivity() {
                         val username = tx_username.text.toString()
                         val password = tx_password.text.toString()
                         var isPasswordCorrect = false
+
+                        /*if (userResponse != null) {
+                            val userList = userResponse.`object`
+                            if (userList is List<*>) {
+                                for (users in userList) {
+                                    if (users is ObjectUser) {
+                                        if (users.nombreUsuario == username) {
+                                            if (BCrypt.verifyer().verify(password.toCharArray(), users.contrasena).verified) {
+                                                // Las credenciales son correctas
+                                                isPasswordCorrect = true
+
+                                                val intent = Intent(this@MainActivity, Home::class.java)
+                                                val userId = users.idUser
+
+                                                // Guardar el ID del usuario en SharedPreferences
+                                                val sharedPref: SharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE)
+                                                val editor: SharedPreferences.Editor = sharedPref.edit()
+                                                editor.putString("user_id", userId.toString())
+                                                editor.apply()
+
+                                                startActivity(intent)
+                                                Toast.makeText(this@MainActivity, "Bienvenido a su cuenta ${users.nombre}", Toast.LENGTH_SHORT).show()
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if (userList is ObjectUser) {
+                                // El servidor devolvió un solo usuario en lugar de una lista
+                                if (userList.nombreUsuario == username) {
+                                    if (BCrypt.verifyer().verify(password.toCharArray(), userList.contrasena).verified) {
+                                        // Las credenciales son correctas
+                                        isPasswordCorrect = true
+
+                                        val intent = Intent(this@MainActivity, Home::class.java)
+                                        val userId = userList.idUser
+
+                                        // Guardar el ID del usuario en SharedPreferences
+                                        val sharedPref: SharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE)
+                                        val editor: SharedPreferences.Editor = sharedPref.edit()
+                                        editor.putString("user_id", userId.toString())
+                                        editor.apply()
+
+                                        startActivity(intent)
+                                        Toast.makeText(this@MainActivity, "Bienvenido a su cuenta ${userList.nombre}", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+                        } else {
+                            // Manejar el caso donde la respuesta es nula
+                            Log.e("API Error", "Respuesta nula del servidor")
+                            Toast.makeText(this@MainActivity, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show()
+                        }*/
 
                         for (users in users.orEmpty()) {
                             if (users.nombreUsuario == username) {

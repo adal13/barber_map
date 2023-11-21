@@ -4,7 +4,6 @@ import com.example.barbershop.ui.Api.entity.Locals
 import com.example.barbershop.ui.Api.entity.ObjectUser
 import com.example.barbershop.ui.Api.entity.Services
 import com.example.barbershop.ui.Api.entity.User
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -25,7 +24,7 @@ interface ApiServices {
     fun getIdServices(): Call<Services>
 
     @POST("api/v1/user")
-    fun createUser(@Body user: User): Call<ObjectUser>
+    fun createUser(@Body objectUser: ObjectUser): Call<ObjectUser>
 
 
 
