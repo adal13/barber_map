@@ -59,7 +59,6 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         fab = findViewById(R.id.fab);
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        dateUser()
 
         val toolbar: Toolbar = findViewById(R.id.toolbar);
         val navigationView : NavigationView = findViewById(R.id.nav_view);
@@ -69,6 +68,8 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        dateUser()
 
         binding.bottomNavigationView.background = null
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
@@ -234,15 +235,16 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
                     val objectsUser = response.body()?.`object`?.get(0)
+
                     if (objectsUser != null) {
+                        val name_user = findViewById<TextView>(R.id.name_users)
+                        val email_user = findViewById<TextView>(R.id.email_users)
                         // Accede a los campos del objeto
                         val correo = objectsUser.correo
                         val nombre = objectsUser.nombre
 
                         // Actualiza tus vistas con los datos
                         runOnUiThread {
-                            val name_user = findViewById<TextView>(R.id.name_users)
-                            val email_user = findViewById<TextView>(R.id.email_users)
                             name_user.text = nombre
                             email_user.text = correo
                         }
