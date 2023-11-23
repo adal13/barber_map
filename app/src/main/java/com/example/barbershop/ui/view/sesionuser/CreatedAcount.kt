@@ -1,18 +1,17 @@
 package com.example.barbershop.ui.view.sesionuser
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.barbershop.MainActivity
 import com.example.barbershop.R
 import com.example.barbershop.ui.Api.client.ApiClient
 import com.example.barbershop.ui.Api.entity.ObjectUser
-import com.example.barbershop.ui.Api.entity.User
 import com.example.barbershop.ui.files.Validaciones
 import com.example.barbershop.ui.files.changeCursorColor
 import retrofit2.Call
@@ -36,10 +35,6 @@ class CreatedAcount : AppCompatActivity() {
         txt_password = findViewById(R.id.password)
         val btn_button = findViewById<Button>(R.id.button)
 
-        // Hashear la contraseña
-        val password = txt_password.text.toString()
-        val hashedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray())
-
         changeCursorColor(txt_nombre, this)
         changeCursorColor(txt_apellido, this)
         changeCursorColor(txt_phone, this)
@@ -50,6 +45,9 @@ class CreatedAcount : AppCompatActivity() {
         btn_button.setOnClickListener{
 
             if(validateFields()){
+
+                // Hasheo de contraseña
+                val hashedPassword = hashPassword(txt_password.toString())
 
                 val newUser = ObjectUser(
                     idUser = 0,
@@ -123,12 +121,22 @@ class CreatedAcount : AppCompatActivity() {
             return false
         }
 
-        val password = txt_password.text.toString()
+        /*val password = txt_password.text.toString()
         if (!Validaciones.validatePassword(password)) {
             Toast.makeText(this, "Contraseña Invalida", Toast.LENGTH_SHORT).show()
             return false
-        }
+        }*/
         return true
+    }
+
+
+    fun hashPassword(password: String): String {
+        // Hashear la contraseña
+        val password = txt_password.text.toString()
+        //val hashedPassword = BCrypt.withDefaults().hashToString(10, password.toCharArray())
+        //val hashedPassword = BCrypt.withDefaults().hashToString(10, BCrypt.Version.VERSION_2Y, password.toCharArray())
+        return BCrypt.with(BCrypt.Version.VERSION_2Y).hashToString(10, password.toCharArray())
+
     }
 
 }

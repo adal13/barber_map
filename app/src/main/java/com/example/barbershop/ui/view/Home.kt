@@ -31,6 +31,10 @@ import com.example.barbershop.ui.fragment.bottomnavigation.BottomBarberiaFragmen
 import com.example.barbershop.ui.fragment.bottomnavigation.BottomHomeFragment
 import com.example.barbershop.ui.fragment.bottomnavigation.BottomPerfilFragment
 import com.example.barbershop.ui.fragment.bottomnavigation.BottomServicioFragment
+import com.example.barbershop.ui.fragment.sidenavigation.SideAgendaFragment
+import com.example.barbershop.ui.fragment.sidenavigation.SideAyudaFragment
+import com.example.barbershop.ui.fragment.sidenavigation.SideContactoFragment
+import com.example.barbershop.ui.fragment.sidenavigation.SideNotificacionFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -146,17 +150,16 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                 replaceFragment(BottomHomeFragment())
             }
             R.id.nav_agenda -> {
-                replaceFragment(BottomBarberiaFragment())
+                replaceFragment(SideAgendaFragment())
             }
             R.id.nav_notificacion -> {
-                val intent = Intent(this@Home, Barber::class.java)
-                startActivity(intent)
+                replaceFragment(SideNotificacionFragment())
             }
             R.id.nav_contacto -> {
-
+                replaceFragment(SideContactoFragment())
             }
             R.id.nav_about -> {
-
+                replaceFragment(SideAyudaFragment())
             }
             R.id.nav_logout -> {
                 if(!isFinishing){

@@ -31,7 +31,7 @@
             android:name=".ui.view.sesionuser.CreatedAcount"
             android:exported="false" />
         <activity
-            android:name=".ui.view.Barber"
+            android:name=".ui.view.Notification"
             android:exported="false" />
         <activity
             android:name=".ui.view.Home"
