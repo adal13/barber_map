@@ -2,9 +2,7 @@ package com.example.barbershop.ui.view
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -225,11 +223,11 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     }
 
     fun dateUser() {
-        // Obtén el ID de usuario almacenado en las preferencias compartidas
-        val sharedPref: SharedPreferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-        val userId = sharedPref.getString("user_id", "")
 
-        val retrofitTraer = ApiClient.consumirApi.getUserId(userId)
+        val name_users = intent.getStringExtra("name_user")
+        val email_users = intent.getStringExtra("email_user")
+
+        val retrofitTraer = ApiClient.consumirApi.getIdUser()
 
         retrofitTraer.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
@@ -245,8 +243,8 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
                         // Actualiza tus vistas con los datos
                         runOnUiThread {
-                            name_user.text = nombre
-                            email_user.text = correo
+                            name_user.text = name_users
+                            email_user.text = email_users
                         }
                     }
                 }

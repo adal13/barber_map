@@ -1,5 +1,6 @@
 package com.example.barbershop
 
+//import org.mindrot.jbcrypt.BCrypt
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -7,22 +8,17 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import at.favre.lib.crypto.bcrypt.BCrypt
+import com.example.barbershop.databinding.ActivityMainBinding
 import com.example.barbershop.ui.Api.client.ApiClient
 import com.example.barbershop.ui.Api.entity.User
-import com.example.barbershop.databinding.ActivityMainBinding
-import com.example.barbershop.ui.view.Home
-//import org.mindrot.jbcrypt.BCrypt
-import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.barbershop.ui.files.changeCursorColor
+import com.example.barbershop.ui.view.Home
+import com.example.barbershop.ui.view.sesionuser.CreatedAcount
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.content.Context
-import android.content.SharedPreferences
-import android.util.Log
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.barbershop.ui.Api.entity.ObjectUser
-import com.example.barbershop.ui.view.sesionuser.CreatedAcount
 
 class MainActivity : AppCompatActivity() {
 
@@ -118,13 +114,14 @@ class MainActivity : AppCompatActivity() {
                                 //if (users.nombreUsuario == username && users.contrasena == password) {
                                     isPasswordCorrect = true
 
+                                    val name_user = users.nombre
+                                    val email_user = users.correo
                                     val intent = Intent(this@MainActivity, Home::class.java)
-                                    val userId = users.idUser
-                                    val sharedPref: SharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE)
-                                    val editor: SharedPreferences.Editor = sharedPref.edit()
+                                    //val sharedPref: SharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE)
+                                    //val editor: SharedPreferences.Editor = sharedPref.edit()
 
-                                    editor.putString("user_id", userId.toString())
-                                    editor.apply()
+                                    intent.putExtra("name_user", name_user)
+                                    intent.putExtra("email_user", email_user)
 
                                     startActivity(intent)
                                     Toast.makeText(this@MainActivity, "Bienvenido a su cuenta ${users.nombre}", Toast.LENGTH_SHORT).show()
