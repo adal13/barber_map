@@ -1,10 +1,23 @@
 package com.example.barbershop.ui.Api.entity
 
+import com.google.gson.annotations.SerializedName
+
 data class ObjectLocalUser(
-    val created_at: Any,
+    @SerializedName("idLocalUser")
     val idLocalUser: Int,
-    val id_user_register: ObjectUser,
+
+    @SerializedName("user_id")
+    val user_id: ObjectUser,
+
+    @SerializedName("locals_id")
     val locals_id: ObjectLocals,
-    val updated_at: Any,
-    val user_id: ObjectUser
+
+    @SerializedName("id_user_register")
+    val id_user_register: ObjectUser,
+
+    @SerializedName("created_at")
+    val created_at: Any,
+
+    @SerializedName("updated_at")
+    val updated_at: Any
 )

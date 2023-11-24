@@ -1,11 +1,11 @@
 package com.example.barbershop.ui.fragment.bottomnavigation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.example.barbershop.R
 import com.example.barbershop.ui.Api.client.ApiClient
 import com.example.barbershop.ui.Api.entity.User
@@ -14,7 +14,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class BottomHomeFragment : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
