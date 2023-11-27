@@ -31,13 +31,10 @@
             android:name=".ui.view.sesionuser.CreatedAcount"
             android:exported="false" />
         <activity
-            android:name=".ui.view.Notification"
-            android:exported="false" />
-        <activity
             android:name=".ui.view.Home"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.map.barbershop.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
 
@@ -53,5 +50,4 @@
 
         </activity>
     </application>
-
 </manifest>

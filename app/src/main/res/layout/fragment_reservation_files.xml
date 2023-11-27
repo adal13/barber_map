@@ -5,10 +5,64 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.bottomnavigation.reservation_files.ReservationFilesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selecciona Tu fecha"
+                android:textSize="25dp"
+                />
+
+
+            <EditText
+                android:id="@+id/etDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:hint="Seleccionar día"
+                android:clickable="false"
+                android:focusable="false"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/id_seleccionaBarbera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selecciona Barber0"
+                android:textSize="25dp"
+                />
+
+            <TextView
+                android:id="@+id/espacioDisponible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Espacio Disponible"
+                android:textSize="25dp"
+                />
+
+            <Button
+                android:id="@+id/btn_cita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agendar"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>

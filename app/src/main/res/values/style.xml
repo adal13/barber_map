@@ -5,4 +5,5 @@
         <item name="android:textColor">@color/black</item> <!-- Color de texto personalizado -->
         <!-- Otros atributos de estilo específicos, si los necesitas -->
     </style>
+
 </resources>
