@@ -18,6 +18,7 @@ class ReservationFilesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_reservation_files, container, false)
+        activity?.title="Reservacion"
         return view
     }
 

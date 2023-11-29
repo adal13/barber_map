@@ -12,6 +12,7 @@ import com.map.barbershop.R
 import com.map.barbershop.ui.Api.client.ApiClient
 import com.map.barbershop.ui.Api.entity.Locals
 import com.map.barbershop.ui.adapter.LocalAdapter
+import com.map.barbershop.ui.fragment.bottomnavigation.reservation_files.ReservationFilesFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +25,7 @@ class BottomBarberiaFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_barberia, container, false)
+        activity?.title="Barberia"
         return view
     }
 
@@ -35,6 +37,17 @@ class BottomBarberiaFragment : Fragment() {
         val adapter = LocalAdapter(locals) // Reemplaza "locals" con tu lista de datos
         recyclerView.adapter = adapter*/
 
+        val cardView = view.findViewById<androidx.cardview.widget.CardView>(R.id.card_views)
+
+        // Agrega un OnClickListener al CardView
+        cardView?.setOnClickListener {
+            val fragmentB = ReservationFilesFragment();
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.reservation_files, fragmentB)
+            transaction.addToBackStack(null)
+            transaction.commit()
+            // Tu lógica para manejar el clic aquí
+        }
         // Llamada a la API para obtener la lista de locales
         val retrofitTraer = ApiClient.consumirApi.getIdLocals()
         retrofitTraer.enqueue(object : Callback<Locals> {
@@ -47,6 +60,8 @@ class BottomBarberiaFragment : Fragment() {
                     recyclerView.layoutManager = LinearLayoutManager(context)
                     val adapter = locals?.let { LocalAdapter(it.`object`) } // Reemplaza "locals" con tu lista de datos
                     recyclerView.adapter = adapter
+
+
 
                     //val listLocal = response.body()?.`object`
                     /*var topMargin = 0

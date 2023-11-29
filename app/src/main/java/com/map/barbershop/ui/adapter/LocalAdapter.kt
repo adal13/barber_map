@@ -51,4 +51,5 @@ class LocalAdapter(private val data: List<ObjectLocals>) : RecyclerView.Adapter<
     override fun getItemCount(): Int {
         return data.size
     }
+
 }

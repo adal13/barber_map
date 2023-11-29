@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/reservation_files"
     tools:context=".ui.fragment.bottomnavigation.reservation_files.ReservationFilesFragment">
 
     <ScrollView
@@ -39,7 +40,7 @@
                 android:id="@+id/id_seleccionaBarbera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selecciona Barber0"
+                android:text="Selecciona Barbero"
                 android:textSize="25dp"
                 />
 

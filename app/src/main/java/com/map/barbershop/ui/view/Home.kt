@@ -1,17 +1,11 @@
 package com.map.barbershop.ui.view
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.*
-import android.widget.ImageView
-import android.widget.LinearLayout
+import android.view.MenuItem
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -31,8 +25,8 @@ import com.map.barbershop.ui.fragment.bottomnavigation.BottomBarberiaFragment
 import com.map.barbershop.ui.fragment.bottomnavigation.BottomHomeFragment
 import com.map.barbershop.ui.fragment.bottomnavigation.BottomPerfilFragment
 import com.map.barbershop.ui.fragment.bottomnavigation.BottomServicioFragment
-import com.map.barbershop.ui.fragment.bottomnavigation.reservation_files.ReservationFilesFragment
 import com.map.barbershop.ui.fragment.sidenavigation.SideAgendaFragment
+import com.map.barbershop.ui.fragment.sidenavigation.SideAyudaFragment
 import com.map.barbershop.ui.fragment.sidenavigation.SideContactoFragment
 import com.map.barbershop.ui.fragment.sidenavigation.SideNotificacionFragment
 import retrofit2.Call
@@ -46,63 +40,77 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
     private lateinit var toggle: ActionBarDrawerToggle;
     private lateinit var binding: ActivityHomeBinding
 
+    private var ID_USERS : Int = 0
+    private var NAME_USERS : String? = null
+    private var EMAIL_USERS : String? = null
+    private var USUARIO : String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_home)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        dateUser()
+
+        ID_USERS = intent.getIntExtra("id_user", 0)
+        NAME_USERS = intent.getStringExtra("name_user")
+        EMAIL_USERS = intent.getStringExtra("email_user")
+        USUARIO = intent.getStringExtra("usuario")
+
+        val perfilBundle = Bundle().apply {
+            putInt("id_user", ID_USERS)
+            putString("name_user", NAME_USERS)
+            putString("email_user", EMAIL_USERS)
+            putString("usuario", USUARIO)
+        }
+
+        //sendDataFragment()
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        fab = findViewById(R.id.fab);
         drawerLayout = findViewById(R.id.drawer_layout);
+
+        binding.bottomNavigationView.background = null
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.getItemId()) {
+                R.id.home -> replaceFragment(BottomHomeFragment(), Bundle())
+                R.id.barberia -> replaceFragment(BottomBarberiaFragment(), Bundle())
+                R.id.servicio -> replaceFragment(BottomServicioFragment(), Bundle())
+                R.id.perfil -> replaceFragment(BottomPerfilFragment(), perfilBundle)
+            }
+            true
+        }
 
 
         val toolbar: Toolbar = findViewById(R.id.toolbar);
         val navigationView : NavigationView = findViewById(R.id.nav_view);
 
         setSupportActionBar(binding.toolbar)
-
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-        dateUser()
-
-        binding.bottomNavigationView.background = null
-        binding.bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.getItemId()) {
-                R.id.home -> replaceFragment(BottomHomeFragment())
-                R.id.barberia -> replaceFragment(BottomBarberiaFragment())
-                R.id.servicio -> replaceFragment(BottomServicioFragment())
-                R.id.perfil -> replaceFragment(BottomPerfilFragment())
-            }
-            true
-        }
-
-        fab.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                showBottomDialog()
-            }
-        })
 
         navigationView.setNavigationItemSelectedListener(this)
 
         if(savedInstanceState == null){
             supportFragmentManager.beginTransaction()
                 .replace(R.id.frame_layout, BottomHomeFragment()).commit()
-            navigationView.setCheckedItem(R.id.nav_home)
+            navigationView.setCheckedItem(R.id.home)
         }
-
     }
 
-    open fun replaceFragment(fragment: Fragment) {
+    open fun replaceFragment(fragment: Fragment, perfilBundle: Bundle) {
+
+        fragment.arguments = perfilBundle
+
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
     }
 
-    private fun showBottomDialog() {
+
+
+/*    private fun showBottomDialog() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.bottomsheetlayout)
@@ -140,25 +148,24 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.getWindow()?.getAttributes()?.windowAnimations = R.style.DialogAnimation
         dialog.getWindow()?.setGravity(Gravity.BOTTOM)
-    }
+    }*/
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_home -> {
-                replaceFragment(BottomHomeFragment())
+                replaceFragment(BottomHomeFragment(), Bundle())
             }
             R.id.nav_agenda -> {
-                replaceFragment(SideAgendaFragment())
+                replaceFragment(SideAgendaFragment(), Bundle())
             }
             R.id.nav_notificacion -> {
-                replaceFragment(SideNotificacionFragment())
+                replaceFragment(SideNotificacionFragment(), Bundle())
             }
             R.id.nav_contacto -> {
-                replaceFragment(SideContactoFragment())
+                replaceFragment(SideContactoFragment(), Bundle())
             }
             R.id.nav_about -> {
-                // replaceFragment(SideAyudaFragment())
-                replaceFragment(ReservationFilesFragment())
+                replaceFragment(SideAyudaFragment(), Bundle())
             }
             R.id.nav_logout -> {
                 if(!isFinishing){
@@ -224,29 +231,27 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
 
     fun dateUser() {
 
-        val name_users = intent.getStringExtra("name_user")
-        val email_users = intent.getStringExtra("email_user")
-
         val retrofitTraer = ApiClient.consumirApi.getIdUser()
 
         retrofitTraer.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
-                    val objectsUser = response.body()?.`object`?.get(0)
 
-                    if (objectsUser != null) {
-                        val name_user = findViewById<TextView>(R.id.name_users)
-                        val email_user = findViewById<TextView>(R.id.email_users)
-                        // Accede a los campos del objeto
-                        val correo = objectsUser.correo
-                        val nombre = objectsUser.nombre
 
-                        // Actualiza tus vistas con los datos
-                        runOnUiThread {
-                            name_user.text = name_users
-                            email_user.text = email_users
+                        if (NAME_USERS != null && EMAIL_USERS != null && USUARIO != null ){
+                            runOnUiThread {
+                                val name_user = findViewById<TextView>(R.id.name_users)
+                                val email_user = findViewById<TextView>(R.id.email_users)
+
+                                name_user.text = NAME_USERS
+                                email_user.text = EMAIL_USERS
+
+                                sendDataFragment()
+                                //sendDataFragmentPerfil()
+                                //sendDataFragmentPerfil(id_users, name_users, email_users, usuario)
+                            }
                         }
-                    }
+
                 }
             }
 
@@ -254,6 +259,24 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                 // Maneja errores
             }
         })
+
     }
 
+    fun sendDataFragment(){
+
+        val fmanager = supportFragmentManager
+        val fmanagertrans = fmanager.beginTransaction()
+
+        // BottomHomeFragment
+        val fragment = BottomHomeFragment()
+        val databundle = Bundle()
+        databundle.putInt("id_user", ID_USERS)
+        databundle.putString("name_user", NAME_USERS)
+
+        replaceFragment(BottomHomeFragment(), databundle)
+
+        fragment.arguments = databundle
+        fmanagertrans.replace(R.id.frameLayout, fragment).commit()
+
+    }
 }

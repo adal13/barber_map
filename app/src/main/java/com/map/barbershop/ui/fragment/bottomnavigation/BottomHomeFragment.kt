@@ -7,11 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.map.barbershop.R
-import com.map.barbershop.ui.Api.client.ApiClient
-import com.map.barbershop.ui.Api.entity.User
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class BottomHomeFragment : Fragment() {
 
@@ -20,29 +15,23 @@ class BottomHomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+        activity?.title="Home"
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val txt_name = view.findViewById<TextView>(R.id.txt_name)
 
-        val retrofitTraer = ApiClient.consumirApi.getIdUser()
-
-        retrofitTraer.enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                if (response.isSuccessful) {
-                    val objects = response.body()?.`object`?.get(0)
-                    val dato = objects?.nombre
-                    txt_name.text = dato
-                } else {
-                    // Manejar la respuesta no exitosa
+        requireActivity().runOnUiThread {
+            val txt_name = view.findViewById<TextView>(R.id.txt_name)
+            val databundle = arguments
+            if (databundle != null) {
+                val nameUser = databundle?.getString("name_user")
+                if (nameUser != null) {
+                        txt_name.text = nameUser
                 }
             }
-
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                // Manejar errores de red u otros errores
-            }
-        })
+        }
     }
+
 }

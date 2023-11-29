@@ -5,12 +5,189 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.sidenavigation.SideContactoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_views_agenda"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="9dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/button_rounded"
+            card_view:cardCornerRadius="20dp"
+            card_view:cardElevation="6dp"
+            card_view:contentPadding="4dp">
+            <RelativeLayout
+                android:id="@+id/id_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp" >
+
+                <ImageView
+                    android:id="@+id/logo_whatsapp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/baseline_phone_24"
+                    android:backgroundTint="@color/lavender"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="TODO" />
+
+                <TextView
+                    android:id="@+id/titulo_notificacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/logo_whatsapp"
+                    android:layout_toRightOf="@+id/logo_whatsapp"
+                    android:text="Telefono"
+                    android:textColor="@color/lavender"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/titulo_notificacion_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/titulo_notificacion"
+                    android:layout_toEndOf="@+id/logo_whatsapp"
+                    android:layout_toRightOf="@+id/logo_whatsapp"
+                    android:text="9321026021"
+                    android:textColor="@color/lavender"
+                    android:textSize="20sp"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_views_agenda1"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="9dp"
+            android:layout_marginTop="200dp"
+            android:background="@drawable/button_rounded"
+            card_view:cardCornerRadius="20dp"
+            card_view:cardElevation="6dp"
+            card_view:contentPadding="4dp">
+            <RelativeLayout
+                android:id="@+id/id_container1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp" >
+
+                <ImageView
+                    android:id="@+id/logo_whatsapp1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/whatsapp"
+                    android:backgroundTint="@color/lavender"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="TODO" />
+
+                <TextView
+                    android:id="@+id/titulo_notificacion1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/logo_whatsapp1"
+                    android:layout_toRightOf="@+id/logo_whatsapp1"
+                    android:text="Whatsapp"
+                    android:textColor="@color/lavender"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Contacto"
-        android:textSize="30dp"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/card_views_agenda2"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="330dp"
+        android:background="@drawable/button_rounded"
+        card_view:cardCornerRadius="20dp"
+        card_view:cardElevation="6dp"
+        card_view:contentPadding="4dp">
+        <RelativeLayout
+            android:id="@+id/id_container2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp" >
+
+            <ImageView
+                android:id="@+id/logo_whatsapp2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/facebook"
+                android:backgroundTint="@color/lavender"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="TODO" />
+
+            <TextView
+                android:id="@+id/titulo_notificacion2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/logo_whatsapp2"
+                android:layout_toRightOf="@+id/logo_whatsapp2"
+                android:text="Facebook"
+                android:textColor="@color/lavender"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_views_agenda3"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="460dp"
+        android:background="@drawable/button_rounded"
+        card_view:cardCornerRadius="20dp"
+        card_view:cardElevation="6dp"
+        card_view:contentPadding="2dp">
+        <RelativeLayout
+            android:id="@+id/id_container3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp" >
+
+            <ImageView
+                android:id="@+id/logo_whatsapp3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/instragram"
+                android:backgroundTint="@color/lavender"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="TODO" />
+
+            <TextView
+                android:id="@+id/titulo_notificacion3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/logo_whatsapp3"
+                android:layout_toRightOf="@+id/logo_whatsapp3"
+                android:text="Instragram"
+                android:textColor="@color/lavender"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </FrameLayout>

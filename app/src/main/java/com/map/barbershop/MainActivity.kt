@@ -114,16 +114,13 @@ class MainActivity : AppCompatActivity() {
                                 //if (users.nombreUsuario == username && users.contrasena == password) {
                                     isPasswordCorrect = true
 
+                                    val id_user = users.idUser
                                     val name_user = users.nombre
                                     val email_user = users.correo
-                                    val intent = Intent(this@MainActivity, Home::class.java)
-                                    //val sharedPref: SharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE)
-                                    //val editor: SharedPreferences.Editor = sharedPref.edit()
+                                    val usuario = users.nombreUsuario
 
-                                    intent.putExtra("name_user", name_user)
-                                    intent.putExtra("email_user", email_user)
+                                    sendDataActivity(id_user, name_user, email_user, usuario)
 
-                                    startActivity(intent)
                                     Toast.makeText(this@MainActivity, "Bienvenido a su cuenta ${users.nombre}", Toast.LENGTH_SHORT).show()
                                     break
                                 }
@@ -148,5 +145,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+
+    fun sendDataActivity(id_user:Int, name_user:String, email_user: String, usuario: String){
+        val intent = Intent(this@MainActivity, Home::class.java)
+        //val sharedPref: SharedPreferences = getSharedPreferences("my_prefs", MODE_PRIVATE)
+        //val editor: SharedPreferences.Editor = sharedPref.edit()
+        intent.putExtra("id_user", id_user)
+        intent.putExtra("name_user", name_user)
+        intent.putExtra("email_user", email_user)
+        intent.putExtra("usuario", usuario)
+
+        startActivity(intent)
     }
 }

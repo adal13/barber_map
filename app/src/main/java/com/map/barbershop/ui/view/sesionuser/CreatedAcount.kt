@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import at.favre.lib.crypto.bcrypt.BCrypt
-import com.map.barbershop.MainActivity
 import com.map.barbershop.R
 import com.map.barbershop.ui.Api.client.ApiClient
 import com.map.barbershop.ui.Api.entity.ObjectUser
@@ -121,11 +120,11 @@ class CreatedAcount : AppCompatActivity() {
             return false
         }
 
-        /*val password = txt_password.text.toString()
+        val password = txt_password.text.toString()
         if (!Validaciones.validatePassword(password)) {
             Toast.makeText(this, "Contraseña Invalida", Toast.LENGTH_SHORT).show()
             return false
-        }*/
+        }
         return true
     }
 

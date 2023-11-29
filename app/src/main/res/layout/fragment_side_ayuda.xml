@@ -5,12 +5,33 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.sidenavigation.SideAyudaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Ayuda"
-        android:textSize="30dp"
-        android:gravity="center"/>
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Política de privacidad"
+                android:textSize="25sp"
+                android:padding="20dp"
+                android:drawableStart="@drawable/logo_app"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 </FrameLayout>

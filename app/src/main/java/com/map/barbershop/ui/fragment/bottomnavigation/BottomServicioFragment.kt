@@ -24,6 +24,7 @@ class BottomServicioFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_servicio, container, false)
+        activity?.title="Servicio"
         return view
     }
 
