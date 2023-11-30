@@ -1,6 +1,7 @@
 package com.map.barbershop.ui.fragment.bottomnavigation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,13 +62,34 @@ class BottomBarberiaFragment : Fragment() {
         }
     }
 
+    open fun replaceFragment(fragment: Fragment) {
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frame_layout, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    private fun handleError(errorMessage: String) {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+    }
+
+
     private fun showLocals(localsList: List<ObjectLocals>) {
         val adapter = LocalAdapter(localsList) { local ->
-            val fragmentB = ReservationFilesFragment()
-            val bundle = Bundle()
-            bundle.putInt("localId", local.idLocal)
+//            val fragmentB = ReservationFilesFragment()
+//            val bundle = Bundle()
+//            bundle.putInt("id_local", local.idLocal)
 
-            replaceFragment(fragmentB, bundle)
+            val id_local = local.idLocal
+            val nombre_local = local.nombre
+            val txt_logo = local.logo
+            val status_local = local.status
+
+            val fragmentB = newInstance(id_local, nombre_local, txt_logo, status_local)
+
+            Log.d("fragmentB" ,"id local: ${id_local}, nombre local: ${nombre_local}")
+
+            replaceFragment(fragmentB)
 
         }
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -75,18 +97,16 @@ class BottomBarberiaFragment : Fragment() {
     }
 
 
-    open fun replaceFragment(fragment: Fragment, clickBundle: Bundle) {
-
-        fragment.arguments = clickBundle
-
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_reservation_files, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
-
-
-    private fun handleError(errorMessage: String) {
-        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+    companion object {
+        fun newInstance(idLocal: Int, nombre_local: String, txt_logo: String, status_local: String): ReservationFilesFragment {
+            val fragment = ReservationFilesFragment()
+            val args = Bundle()
+            args.putInt("idLocal", idLocal)
+            args.putString("nombre", nombre_local)
+            args.putString("logo", txt_logo)
+            args.putString("status", status_local)
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

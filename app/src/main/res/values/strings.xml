@@ -10,4 +10,10 @@
     <string name="update">Actualizar Información</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="agendar">Agendar</string>
+    <string name="horarios_disponible">Horarios disponible</string>
+    <string name="seleccionar_dia">Seleccionar día</string>
+    <string name="selecciona_fecha">Selecciona tu fecha</string>
+    <string name="selecciona_barbero">Selecciona Barbero</string>
+    <string name="tipo_corte">Tipo de Corte</string>
 </resources>

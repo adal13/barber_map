@@ -55,8 +55,6 @@ class LocalAdapter(
         holder.ubicacion.text = "Ubicación: " + local.ubicacion
     }
 
-
-
     private fun buildImageUrl(imagePath: String?): String {
         val baseUrl = "https://proyecto-ti.com/appbarberweb/"
         return Uri.parse(baseUrl).buildUpon()

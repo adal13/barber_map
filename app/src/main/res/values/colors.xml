@@ -18,5 +18,7 @@
     <color name="lavender">#FC01082E</color>
     <color name="blues">#0F0F46</color>
 
+    <color name="transparent100">#00FFFFFF</color>
+    <color name="transparent30">#4DFFFFFF</color>
 
 </resources>

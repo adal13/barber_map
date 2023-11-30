@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_reservation_files"
@@ -9,6 +12,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="73dp"
         android:fillViewport="true">
 
         <LinearLayout
@@ -17,12 +22,47 @@
             android:gravity="center"
             android:orientation="vertical">
 
-
             <TextView
+                android:id="@+id/tipo_servicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selecciona Tu fecha"
-                android:textSize="25dp"
+                android:text="@string/tipo_corte"
+                android:textSize="25sp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewServicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/id_seleccionaBarbera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selecciona_barbero"
+                android:textSize="25sp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewBarberos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+            <TextView
+                android:id="@+id/fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selecciona_fecha"
+                android:textSize="25sp"
                 />
 
 
@@ -31,39 +71,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="24dp"
-                android:hint="Seleccionar día"
+                android:hint="@string/seleccionar_dia"
                 android:clickable="false"
                 android:focusable="false"
                 android:textColor="@color/black"
-                />
-            <TextView
-                android:id="@+id/id_seleccionaBarbera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selecciona Barbero"
-                android:textSize="25dp"
                 />
 
             <TextView
                 android:id="@+id/espacioDisponible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Espacio Disponible"
-                android:textSize="25dp"
+                android:text="@string/horarios_disponible"
+                android:textSize="25sp"
                 />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewHorario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
             <Button
                 android:id="@+id/btn_cita"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Agendar"
+                android:text="@string/agendar"
                 android:textColor="@color/white"
-                android:textSize="20dp"
-
+                android:textSize="20sp"
+                android:layout_marginBottom="5dp"
                 />
-
         </LinearLayout>
-
     </ScrollView>
 
 </FrameLayout>

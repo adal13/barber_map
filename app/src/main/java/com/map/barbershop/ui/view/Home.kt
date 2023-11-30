@@ -25,6 +25,7 @@ import com.map.barbershop.ui.fragment.bottomnavigation.BottomBarberiaFragment
 import com.map.barbershop.ui.fragment.bottomnavigation.BottomHomeFragment
 import com.map.barbershop.ui.fragment.bottomnavigation.BottomPerfilFragment
 import com.map.barbershop.ui.fragment.bottomnavigation.BottomServicioFragment
+import com.map.barbershop.ui.fragment.bottomnavigation.reservation_files.ReservationFilesFragment
 import com.map.barbershop.ui.fragment.sidenavigation.SideAgendaFragment
 import com.map.barbershop.ui.fragment.sidenavigation.SideAyudaFragment
 import com.map.barbershop.ui.fragment.sidenavigation.SideContactoFragment
@@ -76,6 +77,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
                 R.id.barberia -> replaceFragment(BottomBarberiaFragment(), Bundle())
                 R.id.servicio -> replaceFragment(BottomServicioFragment(), Bundle())
                 R.id.perfil -> replaceFragment(BottomPerfilFragment(), perfilBundle)
+                R.id.fragment_reservation_files -> replaceFragment(ReservationFilesFragment(), Bundle())
             }
             true
         }

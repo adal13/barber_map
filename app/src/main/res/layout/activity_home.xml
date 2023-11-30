@@ -55,11 +55,10 @@
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
+                android:src="@drawable/logo_app"
                 app:layout_anchor="@id/bottomAppBar"
-                app:maxImageSize="40dp"
-                android:id="@+id/fab"
-                app:tint="@color/lavender" />
+                app:borderWidth="0dp"
+                />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
