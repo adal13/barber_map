@@ -11,30 +11,27 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiServices {
+
+    // Se llama toda la informacion de usuarios que esta filtrando la api
     @GET("api/v1/usuarios")
     fun getIdUser(): Call<User>
 
-    @GET("api/v1/user/{userId}")
-    fun getUserId(@Path("userId") userId: String?): Call<User>
-
-    @GET("api/v1/locales")
-    fun getIdLocals(): Call<Locals>
-
-    @GET("api/v1/services")
-    fun getIdServices(): Call<Services>
-
+    // Esta endpoint hace el llamado al metodo POST para la insercion de datos
     @POST("api/v1/user")
     fun createUser(@Body objectUser: ObjectUser): Call<ObjectUser>
 
+    // Para obtener el usuario mediante id, esto siempre que se haga alguna actualizacdion de datos del usuario
+    @GET("api/v1/user/{userId}")
+    fun getUserId(@Path("userId") userId: String?): Call<User>
 
 
+    // Se obtienen todos los locales en este endpoint
+    @GET("api/v1/locales")
+    fun getIdLocals(): Call<Locals>
 
-/*    @GET("api/v1/usuarios")
-    fun getId(): Response<ApiResponse<List<Users>>>
+    // Se obtiene todos los servicios que tenemos en la API
+    @GET("api/v1/services")
+    fun getIdServices(): Call<Services>
 
-    @GET("api/v1/usuarios")
-    fun getUserId(@Query("IdUser") userId: Int): Call<List<Users?>?>?
 
-    @GET("api/v1/usuarios")
-    fun getUserById(@Query("id") id: Int): Call<List<Users?>?>?*/
 }
