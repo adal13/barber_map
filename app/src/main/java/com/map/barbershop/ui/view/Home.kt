@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -52,7 +53,7 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dateUser()
+
 
         ID_USERS = intent.getIntExtra("id_user", 0)
         NAME_USERS = intent.getStringExtra("name_user")
@@ -60,12 +61,13 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         USUARIO = intent.getStringExtra("usuario")
 
         val perfilBundle = Bundle().apply {
-            putInt("id_user", ID_USERS)
+            putInt("id_users", ID_USERS)
+            Log.d("id_users", "ID_USERS_EXTRA $ID_USERS")
             putString("name_user", NAME_USERS)
             putString("email_user", EMAIL_USERS)
             putString("usuario", USUARIO)
         }
-
+        dateUser()
         //sendDataFragment()
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -73,11 +75,11 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         binding.bottomNavigationView.background = null
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.getItemId()) {
-                R.id.home -> replaceFragment(BottomHomeFragment(), Bundle())
-                R.id.barberia -> replaceFragment(BottomBarberiaFragment(), Bundle())
-                R.id.servicio -> replaceFragment(BottomServicioFragment(), Bundle())
+                R.id.home -> replaceFragment(BottomHomeFragment(), perfilBundle)
+                R.id.barberia -> replaceFragment(BottomBarberiaFragment(), perfilBundle)
+                R.id.servicio -> replaceFragment(BottomServicioFragment(), perfilBundle)
                 R.id.perfil -> replaceFragment(BottomPerfilFragment(), perfilBundle)
-                R.id.fragment_reservation_files -> replaceFragment(ReservationFilesFragment(), Bundle())
+                R.id.fragment_reservation_files -> replaceFragment(ReservationFilesFragment(), perfilBundle)
             }
             true
         }
@@ -109,48 +111,6 @@ class Home : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListene
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
     }
-
-
-
-/*    private fun showBottomDialog() {
-        val dialog = Dialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.bottomsheetlayout)
-        val videoLayout: LinearLayout = dialog.findViewById(R.id.layoutVideo)
-        val shortsLayout: LinearLayout = dialog.findViewById(R.id.layoutShorts)
-        val liveLayout: LinearLayout = dialog.findViewById(R.id.layoutLive)
-        val cancelButton: ImageView = dialog.findViewById(com.map.barbershop.R.id.cancelButton)
-        videoLayout.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                dialog.dismiss()
-                Toast.makeText(this@Home, "Upload a Video is clicked", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        })
-        shortsLayout.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                dialog.dismiss()
-                Toast.makeText(this@Home, "Create a short is Clicked", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        })
-        liveLayout.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                dialog.dismiss()
-                Toast.makeText(this@Home, "Go live is Clicked", Toast.LENGTH_SHORT).show()
-            }
-        })
-        cancelButton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                dialog.dismiss()
-            }
-        })
-        dialog.show()
-        dialog.getWindow()?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.getWindow()?.getAttributes()?.windowAnimations = R.style.DialogAnimation
-        dialog.getWindow()?.setGravity(Gravity.BOTTOM)
-    }*/
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){

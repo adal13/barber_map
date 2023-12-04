@@ -26,7 +26,7 @@ class BottomHomeFragment : Fragment() {
             val txt_name = view.findViewById<TextView>(R.id.txt_name)
             val databundle = arguments
             if (databundle != null) {
-                val nameUser = databundle?.getString("name_user")
+                val nameUser = databundle.getString("name_user")
                 if (nameUser != null) {
                         txt_name.text = nameUser
                 }

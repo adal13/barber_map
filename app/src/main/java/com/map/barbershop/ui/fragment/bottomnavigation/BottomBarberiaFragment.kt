@@ -21,6 +21,9 @@ import retrofit2.Response
 
 class BottomBarberiaFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
+
+    private var idUsuario: Int? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -80,16 +83,27 @@ class BottomBarberiaFragment : Fragment() {
 //            val bundle = Bundle()
 //            bundle.putInt("id_local", local.idLocal)
 
+
+            val arguments = arguments
+            if (arguments != null) {
+                idUsuario = arguments.getInt("id_users")
+                Log.d("Cita a insertar", "$idUsuario")
+            }
+
+
             val id_local = local.idLocal
             val nombre_local = local.nombre
             val txt_logo = local.logo
             val status_local = local.status
 
-            val fragmentB = newInstance(id_local, nombre_local, txt_logo, status_local)
+            val fragmentB =
+                idUsuario?.let { newInstance(id_local, nombre_local, txt_logo, status_local, it) }
 
             Log.d("fragmentB" ,"id local: ${id_local}, nombre local: ${nombre_local}")
 
-            replaceFragment(fragmentB)
+            if (fragmentB != null) {
+                replaceFragment(fragmentB)
+            }
 
         }
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -98,13 +112,15 @@ class BottomBarberiaFragment : Fragment() {
 
 
     companion object {
-        fun newInstance(idLocal: Int, nombre_local: String, txt_logo: String, status_local: String): ReservationFilesFragment {
+        fun newInstance(idLocal: Int, nombre_local: String, txt_logo: String, status_local: String, idUsuario: Int): ReservationFilesFragment {
+
             val fragment = ReservationFilesFragment()
             val args = Bundle()
             args.putInt("idLocal", idLocal)
             args.putString("nombre", nombre_local)
             args.putString("logo", txt_logo)
             args.putString("status", status_local)
+            args.putInt("id_users", idUsuario)
             fragment.arguments = args
             return fragment
         }

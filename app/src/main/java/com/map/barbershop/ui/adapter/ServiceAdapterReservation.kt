@@ -48,8 +48,9 @@ class ServiceAdapterReservation(
         holder.cardView.setOnClickListener {
             // Obtiene el ID del servicio
             val serviceId = service.idServices
+            val serviceName = service.nombre
             // Llama al método de clic del escuchador
-            serviceClickListener.onServiceClick(serviceId)
+            serviceClickListener.onServiceClick(serviceId, serviceName)
         }
 
     }
@@ -59,7 +60,7 @@ class ServiceAdapterReservation(
     }
 
     interface ServiceClickListener {
-        fun onServiceClick(serviceId: Int)
+        fun onServiceClick(serviceId: Int, serviceName: String)
     }
 
 }

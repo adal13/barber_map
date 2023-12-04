@@ -1,14 +1,8 @@
 package com.map.barbershop.ui.Api.services
 
-import com.map.barbershop.ui.Api.entity.Locals
-import com.map.barbershop.ui.Api.entity.ObjectUser
-import com.map.barbershop.ui.Api.entity.Services
-import com.map.barbershop.ui.Api.entity.User
+import com.map.barbershop.ui.Api.entity.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiServices {
 
@@ -33,5 +27,8 @@ interface ApiServices {
     @GET("api/v1/services")
     fun getIdServices(): Call<Services>
 
+    @Headers("Content-Type: application/json")
+    @POST("api/v1/insertCita")
+    fun insertCita(@Body objectCitas: ObjectCitas): Call<ObjectCitas>
 
 }

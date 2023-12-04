@@ -6,34 +6,25 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.map.barbershop.ui.fragment.bottomnavigation.reservation_files.ReservationFilesFragment
 import kotlinx.parcelize.Parcelize
+import java.time.LocalTime
 
 @Parcelize
-data class Horario(val hora: String, val ocupado: Boolean) : Parcelable
+data class Horario(val hora: LocalTime, val ocupado: Boolean) : Parcelable
 
 class AdapterHorario(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
     private val listaHorarios: List<Horario> = crearHorarios()
 
     fun crearHorarios(): List<Horario> {
-        val horarios = mutableListOf<Horario>()
-
         val inicioHora = 8
-        val inicioMinuto = 30
         val finHora = 19
-        val finMinuto = 30
 
-        for (hora in inicioHora..finHora) {
-            for (minuto in 0..30 step 30) {
-                val horaFormateada = String.format("%02d:%02d", hora, minuto)
-                val horario = Horario(
-                    horaFormateada,
-                    false
-                ) // Inicialmente, todos los horarios no están ocupados
-                horarios.add(horario)
-            }
+        return (inicioHora..finHora).flatMap { hora ->
+            listOf(
+                Horario(LocalTime.of(hora, 0), false),
+                Horario(LocalTime.of(hora, 30), false)
+            )
         }
-
-        return horarios
     }
 
     override fun getItemCount(): Int {

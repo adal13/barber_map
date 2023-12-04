@@ -45,8 +45,9 @@ class LocalAdapterReservation(
         holder.cardView.setOnClickListener {
             // Obtiene el ID del servicio
             val userId = local.idUser
+            val userName = local.nombre
             // Llama al método de clic del escuchador
-            userClickListener.onUserClick(userId)
+            userClickListener.onUserClick(userId, userName)
         }
 
     }
@@ -56,7 +57,7 @@ class LocalAdapterReservation(
     }
 
     interface UserClickListener {
-        fun onUserClick(userId: Int)
+        fun onUserClick(userId: Int, userName: String)
     }
 
 }

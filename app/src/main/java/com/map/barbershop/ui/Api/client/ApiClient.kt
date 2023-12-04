@@ -23,8 +23,8 @@ object ApiClient {
 //        return apiService;
 //    }
 
-    val URL_BASE = "http://10.0.2.2:8093/"
-//    val URL_BASE = "https://apidevelopsmartbarber-production.up.railway.app/"
+//    val URL_BASE = "http://10.0.2.2:8093/"
+    val URL_BASE = "https://apidevelopsmartbarber-production.up.railway.app/"
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(URL_BASE)
